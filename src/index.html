@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CaféU 2.0 · pide en la cafetería universitaria antes de llegar">
+  <title>CaféU 2.0 · Cafetería universitaria</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <a class="saltar" href="#principal">Saltar al contenido</a>
+  <header class="barra">
+    <a class="marca" href="#/catalogo" aria-label="CaféU, ir al catálogo">Café<span>U</span></a>
+    <nav aria-label="Principal">
+      <ul class="nav">
+        <li><a href="#/catalogo" data-ruta="catalogo">Catálogo</a></li>
+        <li><a href="#/pedido" data-ruta="pedido">Mi pedido <span class="insignia" id="insignia" aria-label="0 artículos">0</span></a></li>
+      </ul>
+    </nav>
+  </header>
+  <div id="mensajes" class="mensajes" role="status" aria-live="polite"></div>
+  <main id="principal" tabindex="-1"></main>
+  <footer class="pie">CaféU 2.0 · Cafetería FISEI · Abierto de 07:00 a 18:00</footer>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
