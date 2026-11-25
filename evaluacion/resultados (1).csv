@@ -1,0 +1,20 @@
+version,participante,tarea,exito,tiempo_s,tiempo_max_s,errores_criticos,errores_no_criticos,ayuda,seq_1a7,observacion
+v1,P00,T1,Sí,35,60,0,0,No,5,Buscó «sanduche»; preguntó si debía pulsar algo más tras agregar.
+v1,P00,T2,Sí,72,90,0,1,No,4,Pulsó dos veces + y luego − para dejar 3.
+v1,P00,T3,Con ayuda,118,120,0,1,Sí,3,Pidió repetir la consigna; tras la pista recuperó volviendo al catálogo. El pedido de la prueba anterior seguía en la app tras F5.
+v1,P01,T1,Sí,24,60,0,0,No,6,Escribió «sanduche»; dijo «¿se agregó? no vi nada» y miró el contador.
+v1,P01,T2,Sí,58,90,0,1,No,5,"Escribió 3 y pulsó + por inercia (4); corrigió con −. Respondió «$7,25»."
+v1,P01,T3,Sí,112,120,0,1,No,3,"Quitó el sánduche con ✕; no vio el aviso «Deshacer»; volvió al catálogo, lo buscó y lo agregó otra vez. Confirmó CU-101 por $7,25; antes se desplazó para revisar el total."
+v1,P02,T1,Sí,31,60,0,0,No,5,Buscó «sanduche de queso»; tras agregar preguntó «¿ya está?».
+v1,P02,T2,Con ayuda,101,90,0,1,Sí,3,"Pulsó ✕ en lugar de + y el café desapareció: «¿dónde está el café?». Tras la pista volvió al catálogo, lo agregó y ajustó a 3. Respondió «$7,25»."
+v1,P02,T3,No,96,120,1,0,No,2,"Quitó el sánduche; vio el aviso pero desapareció antes de pulsar «Deshacer»: «se fue». Confirmó sin el sánduche (CU-101 por $4,50)."
+v2,P01,T1,Sí,15,60,0,0,No,7,Vio «✓ Agregado» y el mensaje bajo la cabecera.
+v2,P01,T2,Sí,41,90,0,0,No,6,"Usó + dos veces; leyó «3 × $1,50 = $4,50» y el total."
+v2,P01,T3,Sí,38,120,0,0,No,7,"Pulsó «Eliminar» y luego «Deshacer» en la misma lista; confirmó CU-101 por $7,25."
+v2,P02,T1,Sí,19,60,0,0,No,6,Usó el enlace «Ver mi pedido» del mensaje.
+v2,P02,T2,Sí,47,90,0,0,No,6,Escribió 3 en el campo; total actualizado.
+v2,P02,T3,Sí,52,120,0,0,No,6,Leyó «se quitó de tu pedido» y usó «Deshacer»; confirmó con el total en el botón.
+v1,P01,SUS,,,,,,,,SUS=70 (respuestas 4-2-4-2-4-3-4-2-3-2)
+v1,P02,SUS,,,,,,,,"SUS=52,5 (respuestas 3-3-3-2-3-3-3-3-3-3)"
+v2,P01,SUS,,,,,,,,"SUS=87,5 (respuestas 4-1-5-1-4-2-5-1-4-2)"
+v2,P02,SUS,,,,,,,,SUS=75 (respuestas 4-2-4-2-4-2-4-2-4-2)
