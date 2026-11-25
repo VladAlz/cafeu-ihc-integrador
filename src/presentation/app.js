@@ -1,4 +1,4 @@
-// Presentación · controlador (v1): enrutamiento por hash, acciones de usuario y mensajes.
+// Presentación · controlador: enrutamiento por hash, acciones de usuario y mensajes.
 import { crearMensajes } from './components/Mensajes.js';
 import { VistaCatalogo } from './views/VistaCatalogo.js';
 import { VistaPedido } from './views/VistaPedido.js';
@@ -19,7 +19,7 @@ export function iniciarPresentacion({ casosDeUso, raiz }) {
 
   const ejecutar = (fn) => {
     try { return { valor: fn() }; } catch (e) {
-      if (e instanceof ErrorDeDominio) { const texto = e.codigo.startsWith('CANTIDAD') ? 'Cantidad inválida' : e.message; mensajes.mostrar(texto, { tipo: 'error' }); return { error: texto }; }
+      if (e instanceof ErrorDeDominio) { mensajes.mostrar(e.message, { tipo: 'error' }); return { error: e.message }; }
       throw e;
     }
   };
@@ -29,26 +29,31 @@ export function iniciarPresentacion({ casosDeUso, raiz }) {
       const r = ejecutar(() => casosDeUso.agregarAlCarrito(producto.id));
       if (r.error) return;
       actualizarInsignia();
-      mensajes.mostrar('Agregado');
+      boton.textContent = '✓ Agregado';
+      setTimeout(() => { boton.textContent = 'Agregar'; }, 1500);
+      mensajes.mostrar(`${producto.nombre} se agregó a tu pedido.`, { accion: { etiqueta: 'Ver mi pedido', alPulsar: () => { location.hash = '#/pedido'; } } });
     },
     cambiarCantidad(productoId, cantidad) {
       eliminada = null;
       const r = ejecutar(() => casosDeUso.cambiarCantidad(productoId, cantidad));
       if (r.error) return r;
+      mensajes.limpiar();
       pintar({ foco: `#cant-${productoId}` });
       return r;
     },
     eliminar(linea) {
       const r = ejecutar(() => casosDeUso.eliminarDelCarrito(linea.productoId));
       if (r.error) return;
-      const recuerdo = r.valor.recuerdo;
-      pintar();
-      mensajes.mostrar('Producto eliminado', { accion: { etiqueta: 'Deshacer', alPulsar: () => acciones.deshacer(recuerdo) } });
+      eliminada = { recuerdo: r.valor.recuerdo };
+      mensajes.mostrar(`${linea.nombre} se quitó de tu pedido. Puedes deshacerlo en la lista.`, { duracion: 0 });
+      pintar({ foco: '.linea--eliminada button' });
     },
     deshacer(recuerdo) {
       const r = ejecutar(() => casosDeUso.recuperarEliminado(recuerdo));
       if (r.error) return;
-      pintar();
+      eliminada = null;
+      mensajes.mostrar(`${recuerdo.linea.nombre} volvió a tu pedido.`);
+      pintar({ foco: `#cant-${recuerdo.linea.productoId}` });
     },
     confirmar() {
       const r = ejecutar(() => casosDeUso.confirmarPedido());

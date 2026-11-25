@@ -21,7 +21,12 @@ export function VistaCatalogo({ casosDeUso, estado, alAgregar }) {
     resumen.textContent = productos.length
       ? `${productos.length} producto${productos.length === 1 ? '' : 's'}`
       : '';
-    if (!productos.length) lista.append(h('li', { class: 'vacio' }, 'Sin resultados.'));
+    if (!productos.length) {
+      lista.append(h('li', { class: 'vacio' },
+        h('p', {}, `No encontramos «${estado.texto}».`),
+        h('p', {}, 'Prueba con «café», «pan» o «jugo», o revisa todo el menú.'),
+        h('button', { type: 'button', class: 'boton boton--secundario', onclick: () => { estado.texto = ''; buscador.value = ''; estado.categoria = 'todo'; filtros.querySelectorAll('.filtro').forEach((b, i) => b.setAttribute('aria-pressed', String(i === 0))); pintar(); buscador.focus(); } }, 'Ver todo el menú')));
+    }
   }
   buscador.addEventListener('input', () => { estado.texto = buscador.value; pintar(); });
   pintar();
